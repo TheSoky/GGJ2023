@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37fe346762a03264eb9b1dff6901dbc6, type: 3}
-  m_Name: OneAndOnly
+  m_Name: OneAndOnly(Player)
   m_EditorClassIdentifier: 
   MaxHealth: 5
   BaseShield: 5
   BaseWeaponRange: 50
+  BaseFireRate: 0.2
   BaseMovementSpeed: 5
+  BaseDamage: 0
   Save:
     CollectedResource: 0
     OffenseLevel: 0

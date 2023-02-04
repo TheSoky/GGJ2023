@@ -5,22 +5,29 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInput))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
+    [SerializeField]
+    private ScriptableReference _references;
+
     [SerializeField]
     private ScriptableSaveFile _playerSave;
 
     [SerializeField]
     private Transform _frontBody;
 
+    [SerializeField]
+    private Transform _firePoint;
+
     private Rigidbody2D _rigidbody;
     private PlayerInput _playerInput;
     private Camera _mainCamera;
     private Vector2 _aimDirection;
+    private Coroutine _shootingCoroutine;
 
     private void Awake()
     {
-        if(_playerSave == null)
+        if (_playerSave == null)
         {
             Debug.LogError("Missing Save file on player! what are you trying to pull of?");
             Destroy(this);
@@ -33,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnPlayerMove(InputAction.CallbackContext context)
     {
-        if(context.canceled)
+        if (context.canceled)
         {
             _rigidbody.velocity = Vector2.zero;
             return;
@@ -45,29 +52,65 @@ public class PlayerController : MonoBehaviour
 
     public void OnPlayerAim(InputAction.CallbackContext context)
     {
-        if(context.canceled)
+        if (context.canceled)
         {
             return;
         }
-        Vector3 target;
-        if(_playerInput.currentControlScheme == "Keyboard&Mouse") //Adapt Mouse position from world to relevant local
+        
+        if (_playerInput.currentControlScheme == "Keyboard&Mouse") //Adapt Mouse position from world to relevant local
         {
-            target = _mainCamera.ScreenToWorldPoint(context.ReadValue<Vector2>()); //read the world position
-            target.z = 0.0f; // remove z artifact from 3D space
-            target = (target - _frontBody.position).normalized; // Normalize as local difference
+            _aimDirection = _mainCamera.ScreenToWorldPoint(context.ReadValue<Vector2>()); //read the world position
+            _aimDirection = (_aimDirection - (Vector2)_frontBody.position).normalized; // Normalize as local difference
         }
         else
         {
-            target = (Vector3)context.ReadValue<Vector2>();
+            _aimDirection = context.ReadValue<Vector2>();
         }
-        _frontBody.up = target;
+        _frontBody.up = _aimDirection;
+    }
+
+    public void OnPlayerShoot(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _shootingCoroutine = StartCoroutine(ShootingCoroutine());
+        }
+        else if (context.canceled)
+        {
+            StopCoroutine(_shootingCoroutine);
+        }
     }
 
     private void OnDestroy()
     {
-        if(_playerSave != null)
+        if (_playerSave != null)
         {
             _playerSave.SaveData();
+        }
+    }
+
+    private IEnumerator ShootingCoroutine()
+    {
+        while(true)
+        {
+            FireProjectile();
+            yield return new WaitForSeconds(_playerSave.BaseFireRate);
+        }
+    }
+
+    private void FireProjectile()
+    {
+        GameObject projectile = _references.Pool.RequestPooledItem(PoolManager.PrefabType.PLAYER_PROJECTILE);
+        projectile.GetComponent<ProjectileBehaviour>().FireProjectile(_aimDirection, _firePoint.position);
+    }
+
+    public void TakeDamage(float amount)
+    {
+        _playerSave.Save.HealthRemaining -= amount;
+        if(_playerSave.Save.HealthRemaining <= Mathf.Epsilon)
+        {
+            //TODO reload dat level
+            _playerSave.Save.HealthRemaining = _playerSave.MaxHealth;
         }
     }
 }
