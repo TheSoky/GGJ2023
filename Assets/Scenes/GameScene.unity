@@ -696,7 +696,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1535492984}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -708,7 +708,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &225619279
 MonoBehaviour:
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dd32890a5272ac544bbfd4a7a58bf382, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d08283ee8cea86d44bc0305ff7e312e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2905,7 +2905,7 @@ MonoBehaviour:
   markedCheckSprite: {fileID: 21300000, guid: 4f1c7f527fd5dc449aa64465d10d8f00, type: 3}
   unMarkedCheckSprite: {fileID: 21300000, guid: 9a6bfeb9b6c5c9f4db56ebbe377089d6, type: 3}
   offenseSprites:
-  - {fileID: 21300000, guid: dd32890a5272ac544bbfd4a7a58bf382, type: 3}
+  - {fileID: 21300000, guid: d08283ee8cea86d44bc0305ff7e312e7, type: 3}
   - {fileID: 21300000, guid: 158be1530824d014bbe00c087b5b1638, type: 3}
   - {fileID: 21300000, guid: 8a3ab39410f9d8744851069332008547, type: 3}
   defenseSprites:
