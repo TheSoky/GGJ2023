@@ -212,7 +212,7 @@
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Gamepad",
                     "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -223,7 +223,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "Keyboard&Mouse",
                     "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
