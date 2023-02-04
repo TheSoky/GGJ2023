@@ -15,7 +15,9 @@ MonoBehaviour:
   MaxHealth: 5
   BaseShield: 5
   BaseWeaponRange: 50
+  BaseFireRate: 0.2
   BaseMovementSpeed: 5
+  BaseDamage: 0
   Save:
     CollectedResource: 0
     OffenseLevel: 0
