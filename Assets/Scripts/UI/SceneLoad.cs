@@ -9,6 +9,11 @@ public class SceneLoad : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
+    public void LoadDialogScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("DialogScene");
+    }
+
     public void LoadGameScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
