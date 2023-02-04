@@ -2,14 +2,16 @@ using UnityEngine;
 using System;
 using System.IO;
 
-[CreateAssetMenu(fileName = "OneAndOnly", menuName = "GJJ/TaknesLiBitCeGuzvus", order = 0)]
+[CreateAssetMenu(fileName = "OneAndOnly", menuName = "GJJ/TaknesLiBitCeGuzvus")]
 public class ScriptableSaveFile : ScriptableObject
 {
     [Header("tuning")]
     public int MaxHealth;
     public int BaseShield;
     public float BaseWeaponRange;
+    public float BaseFireRate;
     public float BaseMovementSpeed;
+    public float BaseDamage;
 
     [Header("Only for eyes")]
     public PermaData Save;
