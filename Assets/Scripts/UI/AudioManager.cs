@@ -6,22 +6,22 @@ using UnityEngine.UI;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
-    AudioClip mainmenuMusicClip;
+    private AudioClip mainmenuMusicClip;
 
     [SerializeField]
-    AudioSource musicSource;
+    private AudioSource musicSource;
 
     [SerializeField]
-    Button musicButton;
+    private Button musicButton;
 
     [SerializeField]
-    Button soundButton;
+    private Button soundButton;
 
     [SerializeField]
-    Sprite[] musicSprites;
+    private Sprite[] musicSprites;
 
     [SerializeField]
-    Sprite[] soundSprites;
+    private Sprite[] soundSprites;
 
 
     // Start is called before the first frame update
