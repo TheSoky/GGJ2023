@@ -50,16 +50,17 @@ public class PlayerController : MonoBehaviour
             return;
         }
         Vector3 target;
-        if(_playerInput.currentControlScheme == "Keyboard&Mouse")
+        if(_playerInput.currentControlScheme == "Keyboard&Mouse") //Adapt Mouse position from world to relevant local
         {
-            target = _mainCamera.ScreenToWorldPoint(context.ReadValue<Vector2>());
-            target.z = 0.0f;
+            target = _mainCamera.ScreenToWorldPoint(context.ReadValue<Vector2>()); //read the world position
+            target.z = 0.0f; // remove z artifact from 3D space
+            target = (target - _frontBody.position).normalized; // Normalize as local difference
         }
         else
         {
-            target = (Vector3)context.ReadValue<Vector2>() + _frontBody.position;
+            target = (Vector3)context.ReadValue<Vector2>();
         }
-        _frontBody.rotation = Quaternion.FromToRotation(_frontBody.position, target);
+        _frontBody.up = target;
     }
 
     private void OnDestroy()
