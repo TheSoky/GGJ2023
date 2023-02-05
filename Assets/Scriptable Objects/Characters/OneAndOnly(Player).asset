@@ -19,9 +19,9 @@ MonoBehaviour:
   BaseMovementSpeed: 10
   BaseDamage: 1
   Save:
+    IsOffenseChosen: 0
     CollectedResource: 0
     OffenseLevel: 0
     DefenseLevel: 0
-    LevelReached: 0
     HealthRemaining: 5
-    ShieldRemaining: -261
+    ShieldRemaining: 5

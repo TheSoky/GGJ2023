@@ -20,7 +20,7 @@ public class ScriptableSaveFile : ScriptableObject
 
     public float GetWeaponRange()
     {
-        return Save.OffenseLevel > 0 ? BaseWeaponRange : BaseWeaponRange * 2;
+        return Save.OffenseLevel > 0 && Save.IsOffenseChosen ? BaseWeaponRange : BaseWeaponRange * 2;
     }
 
     public void SaveData()
@@ -46,9 +46,23 @@ public class ScriptableSaveFile : ScriptableObject
             Save = new PermaData()
             {
                 HealthRemaining = MaxHealth,
-                ShieldRemaining = BaseShield
+                ShieldRemaining = BaseShield,
+                OffenseLevel = 0,
+                DefenseLevel = 0,
             };
         }
+    }
+
+    public void ResetData()
+    {
+        Save = new PermaData()
+        {
+            HealthRemaining = MaxHealth,
+            ShieldRemaining = BaseShield,
+            OffenseLevel = 0,
+            DefenseLevel = 0,
+        };
+        SaveData();
     }
 
     [Serializable]
@@ -58,7 +72,6 @@ public class ScriptableSaveFile : ScriptableObject
         public int CollectedResource;
         public int OffenseLevel;
         public int DefenseLevel;
-        public int LevelReached;
         public float HealthRemaining;
         public float ShieldRemaining;
     }

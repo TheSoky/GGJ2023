@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInput))]
@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Camera _mainCamera;
     private Vector2 _aimDirection;
     private Coroutine _shootingCoroutine;
+    private float _actualWeaponDamage;
+    private float _actualFireRate;
+    private bool _hasThatExtraLife;
 
     private HUDPanel _hudPanel;
 
@@ -43,6 +46,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         _mainCamera = Camera.main;
         _playerInput = GetComponent<PlayerInput>();
         _shield.SetActive(false);
+        _actualWeaponDamage = (_playerSave.Save.OffenseLevel > 1 && _playerSave.Save.IsOffenseChosen) ?
+            _playerSave.BaseDamage * 1.5f : _playerSave.BaseDamage;
+        _actualFireRate = _playerSave.Save.OffenseLevel > 2 && _playerSave.Save.IsOffenseChosen ?
+            _playerSave.BaseDamage / 2.0f : _playerSave.BaseDamage;
+        _hasThatExtraLife = _playerSave.Save.DefenseLevel > 2 && !_playerSave.Save.IsOffenseChosen;
     }
 
     private void OnDestroy()
@@ -117,14 +125,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         while(true)
         {
             FireProjectile();
-            yield return new WaitForSeconds(_playerSave.BaseFireRate);
+            yield return new WaitForSeconds(_actualFireRate);
         }
     }
 
     private void FireProjectile()
     {
         GameObject projectile = _references.Pool.RequestPooledItem(PoolManager.PrefabType.PLAYER_PROJECTILE);
-        projectile.GetComponent<ProjectileBehaviour>().FireProjectile(_aimDirection, _firePoint.position, _playerSave.BaseWeaponRange, _playerSave.BaseDamage);
+        projectile.GetComponent<ProjectileBehaviour>().FireProjectile(_aimDirection, _firePoint.position, _playerSave.GetWeaponRange(), _actualWeaponDamage);
     }
 
     public void TakeDamage(float amount)
@@ -134,10 +142,20 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             _hudPanel.OnHealthChanged(_playerSave.Save.HealthRemaining / _playerSave.MaxHealth);
         }
-        if(_playerSave.Save.HealthRemaining <= Mathf.Epsilon)
+        if(_playerSave.Save.HealthRemaining <= 0.0f)
         {
-            //TODO reload dat level
-            _playerSave.Save.HealthRemaining = _playerSave.MaxHealth;
+            if(_hasThatExtraLife)
+            {
+                _hasThatExtraLife = false;
+                _playerSave.Save.HealthRemaining = _playerSave.MaxHealth;
+                _hudPanel.OnHealthChanged(_playerSave.Save.HealthRemaining / _playerSave.MaxHealth);
+            }
+            else
+            {
+                _playerSave.ResetData();
+                SceneManager.LoadScene("MainMenu");
+            }
         }
     }
+
 }
