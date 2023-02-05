@@ -12,12 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c77567abffc47247aa16598efb84197, type: 3}
   m_Name: Termite
   m_EditorClassIdentifier: 
-  InitalHealth: 0
-  AttackRange: 0
-  MovementSpeed: 0
-  IsSuicidal: 0
-  Attack: 1
-  Visuals:
-    Stand: {fileID: 0}
-    Walk: {fileID: 0}
-    Attack: {fileID: 0}
+  InitalHealth: 5
+  AttackRange: 4
+  AttackRate: 1
+  AttackDamage: 2
+  MovementSpeed: 8
+  AttackType: 2
+  DetectionUpdateTime: 4
+  Attack:
+    FrontAnimation: {fileID: 7400000, guid: 9d228d092bea5314b8497abc99a11b2e, type: 2}
+    BackAnimation: {fileID: 7400000, guid: ca04e9f3c11a8ee4fa06b8c76b4535a5, type: 2}
+  Idle:
+    FrontAnimation: {fileID: 7400000, guid: 0e212aad17ebad64ebc63e622d1b14a3, type: 2}
+    BackAnimation: {fileID: 7400000, guid: ca04e9f3c11a8ee4fa06b8c76b4535a5, type: 2}
+  Walk:
+    FrontAnimation: {fileID: 7400000, guid: 1788aa85add353641b780d32474d4c23, type: 2}
+    BackAnimation: {fileID: 7400000, guid: ca04e9f3c11a8ee4fa06b8c76b4535a5, type: 2}

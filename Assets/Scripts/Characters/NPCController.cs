@@ -15,7 +15,7 @@ public class NPCController : MonoBehaviour, IDamageable
     private Animator _backPart;
 
     [SerializeField]
-    private Collider2D _playerDetecionCollider;
+    private CircleCollider2D _playerDetecionCollider;
 
     [SerializeField]
     private Collider2D _meleeAttackCollider;
@@ -29,6 +29,8 @@ public class NPCController : MonoBehaviour, IDamageable
     [SerializeField]
     private LayerMask _hittableMeleeLayers;
 
+    
+    private SpriteRenderer _cloudSprite;
     private float _health;
     private float _timer = 0.0f;
     private ScriptableNPCData _current;
@@ -39,6 +41,9 @@ public class NPCController : MonoBehaviour, IDamageable
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
+        _agent.updateUpAxis = false;
+        _agent.updateRotation = false;
+        _cloudSprite = _explosionCollider.GetComponent<SpriteRenderer>();
         _filter = new ContactFilter2D()
         {
             layerMask = _hittableMeleeLayers,
@@ -46,23 +51,32 @@ public class NPCController : MonoBehaviour, IDamageable
         };
     }
 
+    private void OnEnable()
+    {
+        _cloudSprite.color = Color.clear;
+    }
+
     private void Update()
     {
-        _timer += Time.deltaTime;
-
-        if(_timer > _current.DetectionUpdateTime)
+        if (_current != null)
         {
-            if(_playerDetecionCollider.IsTouchingLayers())
+            _timer += Time.deltaTime;
+
+            if (_timer > _current.DetectionUpdateTime)
             {
-                _agent.ResetPath();
-                StartCoroutine(AttackingCoroutine());
+                transform.up = (_references.PlayerTransform.position - transform.position).normalized;
+                if (_playerDetecionCollider.IsTouchingLayers())
+                {
+                    _agent.ResetPath();
+                    StartCoroutine(AttackingCoroutine());
+                }
+                else
+                {
+                    _agent.SetDestination(_references.PlayerTransform.position);
+                    SetAnimation(_current.Walk);
+                }
+                _timer = 0.0f;
             }
-            else
-            {
-                _agent.SetDestination(_references.PlayerTransform.position);
-                SetAnimation(_current.Walk);
-            }
-            _timer = 0.0f;
         }
     }
 
@@ -71,12 +85,16 @@ public class NPCController : MonoBehaviour, IDamageable
         StopAllCoroutines();
     }
 
-    public void SetupNpc(ScriptableNPCData npc)
+    public void SetupNpc(ScriptableNPCData npc, Vector3 position)
     {
+        position.z += 0.4f;
+        transform.position = position;
+        transform.rotation = Quaternion.identity;
         _timer = 0.0f;
         _current = npc;
         _health = npc.InitalHealth;
         _agent.speed = _current.MovementSpeed;
+        _playerDetecionCollider.radius = _current.AttackRange;
         StartCoroutine(WaitForNavReady());
     }
 
@@ -116,7 +134,11 @@ public class NPCController : MonoBehaviour, IDamageable
     private IEnumerator AttackCoroutine()
     {
         SetAnimation(_current.Attack);
-        float midTime = _current.Attack.FrontAnimation.clip.length / 2;
+        float midTime = _current.Attack.FrontAnimation.length / 2;
+        if(_current.AttackType == AttackType.KAMIKAZE)
+        {
+            StartCoroutine(SmokeCloudEffect(midTime));
+        }
         yield return new WaitForSeconds(midTime);
         if(_current.AttackType == AttackType.RANGED)
         {
@@ -142,14 +164,33 @@ public class NPCController : MonoBehaviour, IDamageable
             {
                 results[i].GetComponent<IDamageable>()?.TakeDamage(_current.AttackDamage);
             }
+            _references.Pool.ReturnToPool(gameObject, PoolManager.PrefabType.ENEMY_CHARACTER);
         }
         yield return new WaitForSeconds(midTime);
         SetAnimation(_current.Idle);
     }
 
+    private IEnumerator SmokeCloudEffect(float midTime)
+    {
+        float timer = 0.0f;
+        while(timer < midTime)
+        {
+            _cloudSprite.color = Color.Lerp(Color.clear, Color.white, timer / midTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        while (timer > 0.0f)
+        {
+            _cloudSprite.color = Color.Lerp(Color.clear, Color.white, timer / midTime);
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
     private IEnumerator WaitForNavReady()
     {
         yield return new WaitUntil(() => _agent.isOnNavMesh);
+        transform.up = (_references.PlayerTransform.position - transform.position).normalized;
         _agent.SetDestination(_references.PlayerTransform.position);
         SetAnimation(_current.Walk);
     }
@@ -159,6 +200,6 @@ public class NPCController : MonoBehaviour, IDamageable
 [System.Serializable]
 public class Animations
 {
-    public Animation FrontAnimation;
-    public Animation BackAnimation;
+    public AnimationClip FrontAnimation;
+    public AnimationClip BackAnimation;
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class SpawnData
 {
+    public int Amount;
     public Vector2 position;
     public ScriptableNPCData NPC;
 }
@@ -24,7 +25,7 @@ public class NPCSpawnManager : MonoBehaviour
     [SerializeField]
     private List<WaveData> _allWaves = new List<WaveData>();
 
-    public void OnLevelReady()
+    private void Start()
     {
         StartCoroutine(LevelWaveLoop());
     }
@@ -35,9 +36,13 @@ public class NPCSpawnManager : MonoBehaviour
         {
             foreach (SpawnData spawn in wave.WaveSpawns)
             {
-                GameObject npc = _references.Pool.RequestPooledItem(PoolManager.PrefabType.ENEMY_CHARACTER);
-                NPCController npcController = npc.GetComponent<NPCController>();
-                npcController.SetupNpc(spawn.NPC);
+                Vector2 offSet = Vector3.right;
+                for (int i = 0; i < spawn.Amount; i++)
+                {
+                    GameObject npc = _references.Pool.RequestPooledItem(PoolManager.PrefabType.ENEMY_CHARACTER);
+                    NPCController npcController = npc.GetComponent<NPCController>();
+                    npcController.SetupNpc(spawn.NPC, spawn.position + offSet * i);
+                }
             }
             yield return new WaitForSeconds(wave.WaveDuration);
         }
