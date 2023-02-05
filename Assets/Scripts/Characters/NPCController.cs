@@ -64,7 +64,7 @@ public class NPCController : MonoBehaviour, IDamageable
 
             if (_timer > _current.DetectionUpdateTime)
             {
-                transform.up = (_references.PlayerTransform.position - transform.position).normalized;
+                transform.up = (_references.PlayerController.transform.position - transform.position).normalized;
                 if (_playerDetecionCollider.IsTouchingLayers())
                 {
                     _agent.ResetPath();
@@ -72,7 +72,7 @@ public class NPCController : MonoBehaviour, IDamageable
                 }
                 else
                 {
-                    _agent.SetDestination(_references.PlayerTransform.position);
+                    _agent.SetDestination(_references.PlayerController.transform.position);
                     SetAnimation(_current.Walk);
                 }
                 _timer = 0.0f;
@@ -121,7 +121,7 @@ public class NPCController : MonoBehaviour, IDamageable
         float _timer = _current.DetectionUpdateTime;
         while(_timer > 0)
         {
-            transform.up = (_references.PlayerTransform.position - transform.position).normalized;
+            transform.up = (_references.PlayerController.transform.position - transform.position).normalized;
 
             StartCoroutine(AttackCoroutine());
 
@@ -190,8 +190,8 @@ public class NPCController : MonoBehaviour, IDamageable
     private IEnumerator WaitForNavReady()
     {
         yield return new WaitUntil(() => _agent.isOnNavMesh);
-        transform.up = (_references.PlayerTransform.position - transform.position).normalized;
-        _agent.SetDestination(_references.PlayerTransform.position);
+        transform.up = (_references.PlayerController.transform.position - transform.position).normalized;
+        _agent.SetDestination(_references.PlayerController.transform.position);
         SetAnimation(_current.Walk);
     }
 

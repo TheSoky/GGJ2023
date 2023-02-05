@@ -14,8 +14,8 @@ public class SceneLoad : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("DialogScene");
     }
 
-    public void LoadGameScene()
+    public void LoadGameScene(string levelName)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(levelName);
     }
 }

@@ -54,6 +54,7 @@ public class ScriptableSaveFile : ScriptableObject
     [Serializable]
     public class PermaData
     {
+        public bool IsOffenseChosen;
         public int CollectedResource;
         public int OffenseLevel;
         public int DefenseLevel;

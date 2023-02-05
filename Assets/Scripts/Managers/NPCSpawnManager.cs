@@ -25,9 +25,22 @@ public class NPCSpawnManager : MonoBehaviour
     [SerializeField]
     private List<WaveData> _allWaves = new List<WaveData>();
 
+    public List<WaveData> AllWaves { get => _allWaves; }
+
+    private void Awake()
+    {
+        _references.SetSpawner(this);
+    }
+
     private void Start()
     {
         StartCoroutine(LevelWaveLoop());
+    }
+
+    private void OnDestroy()
+    {
+        _references.SetSpawner(null);
+        StopAllCoroutines();
     }
 
     private IEnumerator LevelWaveLoop()

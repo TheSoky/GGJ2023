@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class TalentTreeChoice : MonoBehaviour
 {
     [SerializeField]
+    private ScriptableReference _references;
+
+    [SerializeField]
     private Image offenseImage;
 
     [SerializeField]
@@ -32,21 +35,24 @@ public class TalentTreeChoice : MonoBehaviour
     [SerializeField]
     private Sprite[] defenseSprites;
 
+    private Image _offenseButtonImage;
+    private Image _defenseButtonImage;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        _offenseButtonImage = offenseButton.GetComponent<Image>();
+        _defenseButtonImage = defenseButton.GetComponent<Image>();
+    }
+
     void Start()
     {
-        PlayerPrefs.SetInt("Offense", 0);
-        PlayerPrefs.SetInt("Defense", 0);
-        PlayerPrefs.SetInt("Selected", 0);
-
         offenseButton.onClick.AddListener(() =>
         {
-            SpriteSwap(offenseButton.name);
+            SpriteSwap(true);
         });
         defenseButton.onClick.AddListener(() =>
         {
-            SpriteSwap(defenseButton.name);
+            SpriteSwap(false);
         });
 
         //on click listener for next level button that calls function NextSprite
@@ -54,7 +60,7 @@ public class TalentTreeChoice : MonoBehaviour
         {
             NextSprite();
         });
-        //on click listener for next level button that calls funcstion Selected
+        //on click listener for next level button that calls function Selected
         nextLevelButton.onClick.AddListener(() =>
         {
             Selected();
@@ -67,19 +73,19 @@ public class TalentTreeChoice : MonoBehaviour
 
     }
 
-    private void SpriteSwap(string name)
+    private void SpriteSwap(bool isOffense)
     {
-        if (name == "OffenseButton")
+        if (isOffense)
         {
-            offenseButton.GetComponent<Image>().sprite = markedCheckSprite;
-            defenseButton.GetComponent<Image>().sprite = unMarkedCheckSprite;
-            PlayerPrefs.SetInt("Selected", 1);
+            _offenseButtonImage.sprite = markedCheckSprite;
+            _defenseButtonImage.sprite = unMarkedCheckSprite;
+            _references.PlayerData.Save.IsOffenseChosen = false;
         }
-        if (name == "DefenseButton")
+        else
         {
-            defenseButton.GetComponent<Image>().sprite = markedCheckSprite;
-            offenseButton.GetComponent<Image>().sprite = unMarkedCheckSprite;
-            PlayerPrefs.SetInt("Selected", 2);
+            _defenseButtonImage.sprite = markedCheckSprite;
+            _offenseButtonImage.sprite = unMarkedCheckSprite;
+            _references.PlayerData.Save.IsOffenseChosen = true;
         }
     }
 
@@ -101,8 +107,8 @@ public class TalentTreeChoice : MonoBehaviour
                 break;
             }
         }
-        offenseButton.GetComponent<Image>().sprite = unMarkedCheckSprite;
-        defenseButton.GetComponent<Image>().sprite = unMarkedCheckSprite;
+        _offenseButtonImage.sprite = unMarkedCheckSprite;
+        _defenseButtonImage.sprite = unMarkedCheckSprite;
     }
 
     private void Selected()
@@ -110,16 +116,13 @@ public class TalentTreeChoice : MonoBehaviour
         int offenseLevel = PlayerPrefs.GetInt("Offense");
         int defenseLevel = PlayerPrefs.GetInt("Defense");
 
-        if (PlayerPrefs.GetInt("Selected")==1)
+        if (_references.PlayerData.Save.IsOffenseChosen)
         {
-            offenseLevel++;
-            PlayerPrefs.SetInt("Offense", offenseLevel);
+            _references.PlayerData.Save.OffenseLevel++;
         }
-
-        if (PlayerPrefs.GetInt("Selected") == 2)
+        else
         {
-            defenseLevel++;
-            PlayerPrefs.SetInt("Defense", defenseLevel);
+            _references.PlayerData.Save.DefenseLevel++;
         }
     }
 }

@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Camera _mainCamera;
     private Vector2 _aimDirection;
     private Coroutine _shootingCoroutine;
-    private bool _isOnCooldown = false;
+
+    private HUDPanel _hudPanel;
 
     private void Awake()
     {
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             Debug.LogError("Missing Save file on player! what are you trying to pull of?");
             Destroy(this);
         }
-        _references.SetPlayer(transform);
+        _references.SetPlayer(this);
         _playerSave.LoadData();
         _rigidbody = GetComponent<Rigidbody2D>();
         _mainCamera = Camera.main;
@@ -51,6 +52,12 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             _playerSave.SaveData();
         }
+    }
+
+    public void RegisterHudPanel(HUDPanel panel)
+    {
+        _hudPanel = panel;
+        _shield.GetComponent<ShieldController>().RegisterHudPanel(panel);
     }
 
     public void OnPlayerMove(InputAction.CallbackContext context)
@@ -123,6 +130,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void TakeDamage(float amount)
     {
         _playerSave.Save.HealthRemaining -= amount;
+        if(_hudPanel != null)
+        {
+            _hudPanel.OnHealthChanged(_playerSave.Save.HealthRemaining / _playerSave.MaxHealth);
+        }
         if(_playerSave.Save.HealthRemaining <= Mathf.Epsilon)
         {
             //TODO reload dat level

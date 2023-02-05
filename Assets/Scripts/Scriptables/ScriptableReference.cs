@@ -8,8 +8,19 @@ public class ScriptableReference : ScriptableObject
     private PoolManager _poolManager;
     public PoolManager Pool { get => _poolManager; }
 
-    private Transform _playerTransform;
-    public Transform PlayerTransform { get => _playerTransform; }
+    private PlayerController _playerController;
+    public PlayerController PlayerController { get => _playerController; }
+
+    [SerializeField] private ScriptableSaveFile _playerData;
+    public ScriptableSaveFile PlayerData { get => _playerData; }
+
+    private NPCSpawnManager _spawner;
+    public NPCSpawnManager Spawner { get => _spawner; }
+
+    public void SetSpawner(NPCSpawnManager spawner)
+    {
+        _spawner = spawner;
+    }
 
     public void SetPool(PoolManager pool)
     {
@@ -21,13 +32,13 @@ public class ScriptableReference : ScriptableObject
         _poolManager = null;
     }
 
-    public void SetPlayer(Transform player)
+    public void SetPlayer(PlayerController player)
     {
-        _playerTransform = player;
+        _playerController = player;
     }
 
     public void ClearPlayer()
     {
-        _playerTransform = null;
+        _playerController = null;
     }
 }
