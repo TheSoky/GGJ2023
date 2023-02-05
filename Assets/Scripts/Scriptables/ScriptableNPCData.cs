@@ -9,10 +9,17 @@ public class ScriptableNPCData : ScriptableObject
     [Header("Basic stats")]
     public int InitalHealth;
     public float AttackRange;
+    public float AttackRate;
+    public float AttackDamage;
     public float MovementSpeed;
-    public bool IsSuicidal;
-    public AttackType Attack;
-    public CharacterVisuals Visuals;
+    public AttackType AttackType;
+    public float DetectionUpdateTime;
+
+    [Header("Visuals")]
+    public Animations Attack;
+    public Animations Idle;
+    public Animations Walk;
+
 }
 
 public enum AttackType : ushort
@@ -20,12 +27,4 @@ public enum AttackType : ushort
     MELEE,
     RANGED,
     KAMIKAZE
-}
-
-[System.Serializable]
-public class CharacterVisuals
-{
-    public Animation Stand;
-    public Animation Walk;
-    public Animation Attack;
 }

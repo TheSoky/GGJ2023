@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c77567abffc47247aa16598efb84197, type: 3}
+  m_Name: Beetle
+  m_EditorClassIdentifier: 
+  InitalHealth: 5
+  AttackRange: 4
+  AttackRate: 1
+  AttackDamage: 1
+  MovementSpeed: 4
+  AttackType: 0
+  DetectionUpdateTime: 3
+  Attack:
+    FrontAnimation: {fileID: 7400000, guid: f3624ffd5c7c15c489c887178dff5eec, type: 2}
+    BackAnimation: {fileID: 7400000, guid: c79724a60652a04428ba2e9c13ffa198, type: 2}
+  Idle:
+    FrontAnimation: {fileID: 7400000, guid: 2231dbbb49db1ef42908a34da288bd4f, type: 2}
+    BackAnimation: {fileID: 7400000, guid: ca04e9f3c11a8ee4fa06b8c76b4535a5, type: 2}
+  Walk:
+    FrontAnimation: {fileID: 7400000, guid: 5c49570eba4442e4baafd50de7688dd1, type: 2}
+    BackAnimation: {fileID: 7400000, guid: ca04e9f3c11a8ee4fa06b8c76b4535a5, type: 2}

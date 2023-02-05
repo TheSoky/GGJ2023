@@ -19,11 +19,15 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField]
     private Transform _firePoint;
 
+    [SerializeField]
+    private GameObject _shield;
+
     private Rigidbody2D _rigidbody;
     private PlayerInput _playerInput;
     private Camera _mainCamera;
     private Vector2 _aimDirection;
     private Coroutine _shootingCoroutine;
+    private bool _isOnCooldown = false;
 
     private void Awake()
     {
@@ -32,10 +36,21 @@ public class PlayerController : MonoBehaviour, IDamageable
             Debug.LogError("Missing Save file on player! what are you trying to pull of?");
             Destroy(this);
         }
+        _references.SetPlayer(transform);
         _playerSave.LoadData();
         _rigidbody = GetComponent<Rigidbody2D>();
         _mainCamera = Camera.main;
         _playerInput = GetComponent<PlayerInput>();
+        _shield.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        _references.ClearPlayer();
+        if (_playerSave != null)
+        {
+            _playerSave.SaveData();
+        }
     }
 
     public void OnPlayerMove(InputAction.CallbackContext context)
@@ -78,14 +93,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         else if (context.canceled)
         {
             StopCoroutine(_shootingCoroutine);
+            StopAllCoroutines(); //HACK, ugly, gamepad is messing around!
         }
     }
 
-    private void OnDestroy()
+    public void OnPlayerShield(InputAction.CallbackContext context)
     {
-        if (_playerSave != null)
+        if(context.started || context.canceled)
         {
-            _playerSave.SaveData();
+            _shield.SetActive(context.started);
         }
     }
 
@@ -101,7 +117,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void FireProjectile()
     {
         GameObject projectile = _references.Pool.RequestPooledItem(PoolManager.PrefabType.PLAYER_PROJECTILE);
-        projectile.GetComponent<ProjectileBehaviour>().FireProjectile(_aimDirection, _firePoint.position);
+        projectile.GetComponent<ProjectileBehaviour>().FireProjectile(_aimDirection, _firePoint.position, _playerSave.BaseWeaponRange, _playerSave.BaseDamage);
     }
 
     public void TakeDamage(float amount)

@@ -10,12 +10,10 @@ public class ProjectileBehaviour : MonoBehaviour
     private ScriptableReference _references;
 
     [SerializeField]
-    private ScriptableSaveFile _playerData;
-
-    [SerializeField]
     private float _projectileSpeed = 20.0f;
 
     private Rigidbody2D _rigidbody;
+    private float _damage;
 
     private void Awake()
     {
@@ -24,7 +22,8 @@ public class ProjectileBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.collider.GetComponent<IDamageable>()?.TakeDamage(_playerData.BaseDamage);
+        collision.collider.GetComponent<IDamageable>()?.TakeDamage(_damage);
+        _damage = 0.0f;
         _references.Pool.ReturnToPool(gameObject, PoolManager.PrefabType.PLAYER_PROJECTILE);
     }
 
@@ -33,16 +32,17 @@ public class ProjectileBehaviour : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void FireProjectile(Vector2 direction, Vector2 startPos)
+    public void FireProjectile(Vector2 direction, Vector2 startPos, float range, float damage)
     {
+        _damage = damage;
         transform.position = startPos;
         _rigidbody.velocity = direction.normalized * _projectileSpeed;
-        StartCoroutine(DespawnAtDistance());
+        StartCoroutine(DespawnAtDistance(range));
     }
 
-    private IEnumerator DespawnAtDistance()
+    private IEnumerator DespawnAtDistance(float range)
     {
-        float timing = _playerData.GetWeaponRange() / _projectileSpeed;
+        float timing = range / _projectileSpeed;
         yield return new WaitForSeconds(timing);
         _references.Pool.ReturnToPool(gameObject, PoolManager.PrefabType.PLAYER_PROJECTILE);
     }

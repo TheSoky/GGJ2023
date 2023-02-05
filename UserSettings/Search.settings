@@ -10,6 +10,9 @@ scopes = {
 	"last_search.DA949528" = ""
 	"OpenInspectorPreview.DA949528" = "0"
 	"currentGroup.DA949528" = "all"
+	"last_search.EAB0C2BA" = ""
+	"OpenInspectorPreview.EAB0C2BA" = "0"
+	"currentGroup.EAB0C2BA" = "all"
 }
 providers = {
 	adb = {
@@ -56,6 +59,10 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"e04976799df50f54ba128eff723155a7"
+	"70bd44a44cd62c64fbfc1eea95b24880"
+	"te"
+	"gfbgft"
 ]
 searchItemFavorites = [
 ]
