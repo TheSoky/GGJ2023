@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37fe346762a03264eb9b1dff6901dbc6, type: 3}
   m_Name: OneAndOnly(Player)
   m_EditorClassIdentifier: 
-  MaxHealth: 5
+  MaxHealth: 25
   BaseShield: 5
-  BaseHealth: 0
   BaseWeaponRange: 50
   BaseFireRate: 0.14
   BaseMovementSpeed: 10
@@ -24,5 +23,5 @@ MonoBehaviour:
     CollectedResource: 0
     OffenseLevel: 0
     DefenseLevel: 0
-    HealthRemaining: 5
+    HealthRemaining: 25
     ShieldRemaining: 5

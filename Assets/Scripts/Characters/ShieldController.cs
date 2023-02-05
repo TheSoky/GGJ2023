@@ -19,16 +19,16 @@ public class ShieldController : MonoBehaviour, IDamageable
     {
         _renderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
-        _regenerating = _saveFile.Save.DefenseLevel > 0 && !_saveFile.Save.IsOffenseChosen;
+        _regenerating = _saveFile.DefenseLevel > 0 && !_saveFile.IsOffenseChosen;
         _regenRate = _saveFile.BaseShield / 15;
-        _modifier = _saveFile.Save.DefenseLevel > 1 && !_saveFile.Save.IsOffenseChosen ?
+        _modifier = _saveFile.DefenseLevel > 1 && !_saveFile.IsOffenseChosen ?
             1.5f : 1.0f;
 
     }
 
     private void Update()
     {
-        if(_regenerating && _saveFile.Save.ShieldRemaining < _saveFile.BaseShield)
+        if(_regenerating && _saveFile.ShieldRemaining < _saveFile.BaseShield)
         {
             TakeDamage(-_regenRate * Time.deltaTime);
         }
@@ -36,9 +36,9 @@ public class ShieldController : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amount)
     {
-        _saveFile.Save.ShieldRemaining -= amount * _modifier;
+        _saveFile.ShieldRemaining -= amount * _modifier;
         _hudPanel.OnShieldChanged();
-        if (_saveFile.Save.ShieldRemaining <= 0.0f)
+        if (_saveFile.ShieldRemaining <= 0.0f)
         {
             _renderer.enabled = false;
             _collider.enabled = false;

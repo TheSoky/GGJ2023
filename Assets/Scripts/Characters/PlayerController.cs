@@ -41,30 +41,16 @@ public class PlayerController : MonoBehaviour, IDamageable
             Destroy(this);
         }
         _references.SetPlayer(this);
-        if(_playerSave.Save == null)
-        {
-            _playerSave.Save = new();
-        }
-        _playerSave.Save.HealthRemaining = _playerSave.MaxHealth;
-        _playerSave.Save.ShieldRemaining = _playerSave.BaseShield;
+
         _rigidbody = GetComponent<Rigidbody2D>();
         _mainCamera = Camera.main;
         _playerInput = GetComponent<PlayerInput>();
         _shield.SetActive(false);
-        _actualWeaponDamage = (_playerSave.Save.OffenseLevel > 1 && _playerSave.Save.IsOffenseChosen) ?
+        _actualWeaponDamage = (_playerSave.OffenseLevel > 1 && _playerSave.IsOffenseChosen) ?
             _playerSave.BaseDamage * 1.5f : _playerSave.BaseDamage;
-        _actualFireRate = _playerSave.Save.OffenseLevel > 2 && _playerSave.Save.IsOffenseChosen ?
+        _actualFireRate = _playerSave.OffenseLevel > 2 && _playerSave.IsOffenseChosen ?
             _playerSave.BaseDamage / 2.0f : _playerSave.BaseDamage;
-        _hasThatExtraLife = _playerSave.Save.DefenseLevel > 2 && !_playerSave.Save.IsOffenseChosen;
-    }
-
-    private void OnDestroy()
-    {
-        _references.ClearPlayer();
-        if (_playerSave != null)
-        {
-            _playerSave.SaveData();
-        }
+        _hasThatExtraLife = _playerSave.DefenseLevel > 2 && !_playerSave.IsOffenseChosen;
     }
 
     public void RegisterHudPanel(HUDPanel panel)
@@ -157,16 +143,16 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amount)
     {
-        _playerSave.Save.HealthRemaining -= amount;
+        _playerSave.HealthRemaining -= amount;
 
         _hudPanel.OnHealthChanged();
 
-        if(_playerSave.Save.HealthRemaining <= 0.0f)
+        if(_playerSave.HealthRemaining <= 0.0f)
         {
             if(_hasThatExtraLife)
             {
                 _hasThatExtraLife = false;
-                _playerSave.Save.HealthRemaining = _playerSave.MaxHealth;
+                _playerSave.HealthRemaining = _playerSave.MaxHealth;
                 _hudPanel.OnHealthChanged();
             }
             else

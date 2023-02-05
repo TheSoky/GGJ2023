@@ -2820,6 +2820,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 62b0b0007942b5647b25da09f8b53308, type: 3}
   - {fileID: 21300000, guid: aaf1eaf09ce209543a5097d95e37f1f6, type: 3}
   - {fileID: 21300000, guid: edf71e3e46de7fb47ad0f7f9f65d83e6, type: 3}
+  _offenseButtonImage: {fileID: 1207588988876542782}
+  _defenseButtonImage: {fileID: 1207588989581655651}
 --- !u!1 &1207588989911304125
 GameObject:
   m_ObjectHideFlags: 0

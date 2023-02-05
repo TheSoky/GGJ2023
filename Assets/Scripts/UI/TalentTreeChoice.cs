@@ -79,13 +79,13 @@ public class TalentTreeChoice : MonoBehaviour
         {
             _offenseButtonImage.sprite = markedCheckSprite;
             _defenseButtonImage.sprite = unMarkedCheckSprite;
-            _references.PlayerData.Save.IsOffenseChosen = false;
+            _references.PlayerData.IsOffenseChosen = false;
         }
         else
         {
             _defenseButtonImage.sprite = markedCheckSprite;
             _offenseButtonImage.sprite = unMarkedCheckSprite;
-            _references.PlayerData.Save.IsOffenseChosen = true;
+            _references.PlayerData.IsOffenseChosen = true;
         }
     }
 
@@ -116,13 +116,13 @@ public class TalentTreeChoice : MonoBehaviour
         int offenseLevel = PlayerPrefs.GetInt("Offense");
         int defenseLevel = PlayerPrefs.GetInt("Defense");
 
-        if (_references.PlayerData.Save.IsOffenseChosen)
+        if (_references.PlayerData.IsOffenseChosen)
         {
-            _references.PlayerData.Save.OffenseLevel++;
+            _references.PlayerData.OffenseLevel++;
         }
         else
         {
-            _references.PlayerData.Save.DefenseLevel++;
+            _references.PlayerData.DefenseLevel++;
         }
     }
 }

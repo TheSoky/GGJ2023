@@ -102,12 +102,12 @@ public class HUDPanel : MonoBehaviour
 
     public void OnHealthChanged()
     {
-        _healthBarFill.fillAmount = Mathf.Clamp01(_references.PlayerData.Save.HealthRemaining / _references.PlayerData.MaxHealth);
+        _healthBarFill.fillAmount = Mathf.Clamp01(_references.PlayerData.HealthRemaining / _references.PlayerData.MaxHealth);
     }
 
     public void OnShieldChanged()
     {
-        _shieldBarFill.fillAmount = Mathf.Clamp01(_references.PlayerData.Save.ShieldRemaining / _references.PlayerData.BaseShield);
+        _shieldBarFill.fillAmount = Mathf.Clamp01(_references.PlayerData.ShieldRemaining / _references.PlayerData.BaseShield);
     }
 
     public void OnNextLevelRequested()
