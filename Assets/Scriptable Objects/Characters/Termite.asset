@@ -16,9 +16,9 @@ MonoBehaviour:
   AttackRange: 3
   AttackRate: 1
   AttackDamage: 2
-  MovementSpeed: 8
+  MovementSpeed: 12
   AttackType: 2
-  DetectionUpdateTime: 2
+  DetectionUpdateTime: 1
   Attack:
     FrontAnimation: {fileID: 7400000, guid: 9d228d092bea5314b8497abc99a11b2e, type: 2}
     BackAnimation: {fileID: 7400000, guid: ca04e9f3c11a8ee4fa06b8c76b4535a5, type: 2}

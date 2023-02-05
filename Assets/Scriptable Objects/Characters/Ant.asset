@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c77567abffc47247aa16598efb84197, type: 3}
   m_Name: Ant
   m_EditorClassIdentifier: 
-  InitalHealth: 5
+  InitalHealth: 4
   AttackRange: 10
-  AttackRate: 1.5
-  AttackDamage: 1
+  AttackRate: 2
+  AttackDamage: 0.5
   MovementSpeed: 7
   AttackType: 1
   DetectionUpdateTime: 1
