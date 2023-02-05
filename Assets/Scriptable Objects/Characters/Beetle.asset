@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Beetle
   m_EditorClassIdentifier: 
   InitalHealth: 5
-  AttackRange: 4
+  AttackRange: 2
   AttackRate: 1
   AttackDamage: 1
   MovementSpeed: 4

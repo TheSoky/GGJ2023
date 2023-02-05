@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Termite
   m_EditorClassIdentifier: 
   InitalHealth: 5
-  AttackRange: 4
+  AttackRange: 3
   AttackRate: 1
   AttackDamage: 2
   MovementSpeed: 8
