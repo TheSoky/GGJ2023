@@ -26,12 +26,6 @@ public class ScriptableReference : ScriptableObject
     {
         _poolManager = pool;
     }
-
-    public void ClearPool()
-    {
-        _poolManager = null;
-    }
-
     public void SetPlayer(PlayerController player)
     {
         _playerController = player;

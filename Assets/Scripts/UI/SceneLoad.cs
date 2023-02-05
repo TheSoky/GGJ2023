@@ -16,6 +16,7 @@ public class SceneLoad : MonoBehaviour
 
     public void LoadGameScene(string levelName)
     {
+        Time.timeScale = 1.0f;
         UnityEngine.SceneManagement.SceneManager.LoadScene(levelName);
     }
 }

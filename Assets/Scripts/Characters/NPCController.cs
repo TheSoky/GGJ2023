@@ -105,6 +105,7 @@ public class NPCController : MonoBehaviour, IDamageable
         {
             //TODO drop resource
             _references.Pool.ReturnToPool(gameObject, PoolManager.PrefabType.ENEMY_CHARACTER);
+            _references.Spawner.KillMinion();
         }
     }
 

@@ -50,7 +50,6 @@ public class NPCSpawnManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        _references.SetSpawner(null);
         StopAllCoroutines();
     }
 

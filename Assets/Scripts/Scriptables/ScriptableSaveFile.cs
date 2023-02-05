@@ -8,6 +8,7 @@ public class ScriptableSaveFile : ScriptableObject
     [Header("tuning")]
     public int MaxHealth;
     public int BaseShield;
+    public int BaseHealth;
     public float BaseWeaponRange;
     public float BaseFireRate;
     public float BaseMovementSpeed;

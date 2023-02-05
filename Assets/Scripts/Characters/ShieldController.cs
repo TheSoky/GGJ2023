@@ -17,6 +17,8 @@ public class ShieldController : MonoBehaviour, IDamageable
 
     private void Awake()
     {
+        _renderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<Collider2D>();
         _regenerating = _saveFile.Save.DefenseLevel > 0 && !_saveFile.Save.IsOffenseChosen;
         _regenRate = _saveFile.BaseShield / 15;
         _modifier = _saveFile.Save.DefenseLevel > 1 && !_saveFile.Save.IsOffenseChosen ?
@@ -35,7 +37,7 @@ public class ShieldController : MonoBehaviour, IDamageable
     public void TakeDamage(float amount)
     {
         _saveFile.Save.ShieldRemaining -= amount * _modifier;
-        _hudPanel.OnShieldChanged(_saveFile.Save.ShieldRemaining / _saveFile.BaseShield);
+        _hudPanel.OnShieldChanged();
         if (_saveFile.Save.ShieldRemaining <= 0.0f)
         {
             _renderer.enabled = false;
@@ -46,10 +48,7 @@ public class ShieldController : MonoBehaviour, IDamageable
 
     public void RegisterHudPanel(HUDPanel panel)
     {
-        if(_hudPanel != null)
-        {
-            _hudPanel = panel;
-        }
+        _hudPanel = panel;
     }
 
 }

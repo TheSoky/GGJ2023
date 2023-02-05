@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbda614dc7a6b0448b2358788e68c57c, type: 3}
   m_Name: ScriptableReferences
   m_EditorClassIdentifier: 
+  _playerData: {fileID: 11400000, guid: 7fe8ddfecf780cb44976f3dd02c366bb, type: 2}

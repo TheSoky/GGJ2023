@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 5
   BaseShield: 5
+  BaseHealth: 0
   BaseWeaponRange: 50
   BaseFireRate: 0.14
   BaseMovementSpeed: 10

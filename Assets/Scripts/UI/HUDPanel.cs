@@ -49,6 +49,7 @@ public class HUDPanel : MonoBehaviour
     private int _currentWave;
     private int _totalWaves;
     private float _waveTimer;
+    private bool _lastWave = false;
 
 
     private void Start()
@@ -64,25 +65,30 @@ public class HUDPanel : MonoBehaviour
 
     private void Update()
     {
-        _waveTimer -= Time.deltaTime;
-        _countdownWaveContiniousText.text = _waveTimer.ToString("00.00");
-        _waveCountdownAlertText.text = string.Format(_waveContextText, _waveTimer.ToString("0"));
-        if (!_nextWavePanel.activeSelf && _waveTimer <= 5.0f)
-        {
-            _nextWavePanel.SetActive(true);
-        }
-        else if(_waveTimer < 0.0f)
-        {
-            _waveTimer = _levelWaves[_currentWave].WaveDuration;
-            _currentWave++;
-            _currentWaveText.text = _currentWaveText.ToString();
-            _nextWavePanel.SetActive(false);
-        }
-    }
 
-    private void OnDestroy()
-    {
-        _references.PlayerController.RegisterHudPanel(null);
+        if (!_lastWave)
+{
+	_waveTimer -= Time.deltaTime;
+	        _countdownWaveContiniousText.text = _waveTimer.ToString("00.00");
+	        _waveCountdownAlertText.text = string.Format(_waveContextText, _waveTimer.ToString("0"));
+	        if (!_nextWavePanel.activeSelf && _waveTimer <= 5.0f)
+	        {
+	            _nextWavePanel.SetActive(true);
+	        }
+	        else if(_waveTimer < 0.0f)
+	        {
+	            _waveTimer = _levelWaves[_currentWave].WaveDuration;
+	            _currentWave++;
+	            _currentWaveText.text = string.Format(_waveNrString, _currentWave.ToString(), _totalWaves.ToString());
+	            _nextWavePanel.SetActive(false);
+	
+	            if(_currentWave >= _totalWaves)
+	            {
+	                _lastWave = true;
+	                _countdownWaveContiniousText.text = "Get rid of rest of them!";
+	            }
+	        }
+}
     }
 
     private bool _pauseState = false;
@@ -94,18 +100,20 @@ public class HUDPanel : MonoBehaviour
         Time.timeScale = _pauseState ? 0.0f : 1.0f;
     }
 
-    public void OnHealthChanged(float newPercentage)
+    public void OnHealthChanged()
     {
-        _healthBarFill.fillAmount =newPercentage;
+        _healthBarFill.fillAmount = Mathf.Clamp01(_references.PlayerData.Save.HealthRemaining / _references.PlayerData.MaxHealth);
     }
 
-    public void OnShieldChanged(float newPercentage)
+    public void OnShieldChanged()
     {
-        _shieldBarFill.fillAmount = newPercentage;
+        _shieldBarFill.fillAmount = Mathf.Clamp01(_references.PlayerData.Save.ShieldRemaining / _references.PlayerData.BaseShield);
     }
 
     public void OnNextLevelRequested()
     {
+        Time.timeScale = 0.0f;
+        _nextWavePanel.SetActive(false);
         _hudPanel.SetActive(false);
         _nextLevelPanel.SetActive(true);
     }

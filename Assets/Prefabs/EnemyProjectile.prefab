@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 391198410186692450}
   - component: {fileID: 4357115947753093177}
   - component: {fileID: -6551210202365559988}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,5 +137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _references: {fileID: 11400000, guid: 1400278109ddc3e43b655552e4d7c371, type: 2}
-  _playerData: {fileID: 11400000, guid: 7fe8ddfecf780cb44976f3dd02c366bb, type: 2}
   _projectileSpeed: 20

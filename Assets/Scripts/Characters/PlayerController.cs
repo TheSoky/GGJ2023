@@ -41,7 +41,12 @@ public class PlayerController : MonoBehaviour, IDamageable
             Destroy(this);
         }
         _references.SetPlayer(this);
-        _playerSave.LoadData();
+        if(_playerSave.Save == null)
+        {
+            _playerSave.Save = new();
+        }
+        _playerSave.Save.HealthRemaining = _playerSave.MaxHealth;
+        _playerSave.Save.ShieldRemaining = _playerSave.BaseShield;
         _rigidbody = GetComponent<Rigidbody2D>();
         _mainCamera = Camera.main;
         _playerInput = GetComponent<PlayerInput>();
@@ -153,17 +158,16 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void TakeDamage(float amount)
     {
         _playerSave.Save.HealthRemaining -= amount;
-        if(_hudPanel != null)
-        {
-            _hudPanel.OnHealthChanged(_playerSave.Save.HealthRemaining / _playerSave.MaxHealth);
-        }
+
+        _hudPanel.OnHealthChanged();
+
         if(_playerSave.Save.HealthRemaining <= 0.0f)
         {
             if(_hasThatExtraLife)
             {
                 _hasThatExtraLife = false;
                 _playerSave.Save.HealthRemaining = _playerSave.MaxHealth;
-                _hudPanel.OnHealthChanged(_playerSave.Save.HealthRemaining / _playerSave.MaxHealth);
+                _hudPanel.OnHealthChanged();
             }
             else
             {
