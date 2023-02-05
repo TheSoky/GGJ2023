@@ -26,6 +26,7 @@ public class BackgroundChange : MonoBehaviour
 
     private bool finished = false;
     private bool betaFinished = false;
+    private bool totalFinish = false;
     private int index = 0;
     private int indexStr = 0;
 
@@ -56,6 +57,11 @@ public class BackgroundChange : MonoBehaviour
         {
             nextButton.gameObject.SetActive(true);
         }
+        if (totalFinish)
+        {
+            StopAllCoroutines();
+            totalFinish = false;
+        }
     }
     
     private void WaitForFunction()
@@ -73,8 +79,8 @@ public class BackgroundChange : MonoBehaviour
         if (index == 4)
         {
             betaCoroutine = StartCoroutine(DecreaseAlpha(backgroundImages[1]));
-            backgroundImages[2].gameObject.SetActive(false);
-            backgroundImages[3].gameObject.SetActive(false);
+            betaCoroutine = StartCoroutine(DecreaseAlpha(backgroundImages[2]));
+            betaCoroutine = StartCoroutine(DecreaseAlpha(backgroundImages[3]));
         }
         index++;
 
@@ -90,6 +96,10 @@ public class BackgroundChange : MonoBehaviour
             yield return null;
         }
         finished = true;
+        if(image.name == "Mist10Image")
+        {
+            totalFinish = true;
+        }
     }
 
     IEnumerator DecreaseAlpha(Image image)
