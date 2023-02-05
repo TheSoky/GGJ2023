@@ -120,6 +120,21 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
+    public void OnPauseRequested(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            _hudPanel.TogglePause();
+    }
+
+    public void CheatingRequested(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _references.Spawner.KillMinion();
+        }
+    }
+
+
     private IEnumerator ShootingCoroutine()
     {
         while(true)

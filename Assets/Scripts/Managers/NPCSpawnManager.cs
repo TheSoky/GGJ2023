@@ -27,9 +27,20 @@ public class NPCSpawnManager : MonoBehaviour
 
     public List<WaveData> AllWaves { get => _allWaves; }
 
+    private int _numberOfMinions = 0;
+
+    public HUDPanel _hud;
+
     private void Awake()
     {
         _references.SetSpawner(this);
+        for (int i = 0; i < AllWaves.Count; i++)
+        {
+            for (int j = 0; j < AllWaves[i].WaveSpawns.Count; j++)
+            {
+                _numberOfMinions += AllWaves[i].WaveSpawns[j].Amount;
+            }
+        }
     }
 
     private void Start()
@@ -64,5 +75,14 @@ public class NPCSpawnManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawIcon(transform.position, "crossed-swords.png", false, Color.red);
+    }
+
+    public void KillMinion()
+    {
+        _numberOfMinions--;
+        if (_numberOfMinions < 1)
+        {
+            _hud.OnNextLevelRequested();
+        }
     }
 }

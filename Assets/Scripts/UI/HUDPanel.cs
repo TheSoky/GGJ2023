@@ -59,6 +59,7 @@ public class HUDPanel : MonoBehaviour
         _totalWaves = _levelWaves.Count;
         _waveTimer = _levelWaves[0].WaveDuration;
         _currentWaveText.text = string.Format(_waveNrString, _currentWave.ToString(), _totalWaves.ToString());
+        _references.Spawner._hud = this;
     }
 
     private void Update()
