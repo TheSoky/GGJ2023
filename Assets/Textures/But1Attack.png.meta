@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 02298430fe5efac469c88ccaf459265c
+guid: 864923949e3847d488ac6a3401757da0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bug1_0
+      name: But1Attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +113,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1518bf954cd5acc4b8702162eb2d22ce
-      internalID: -378604408
+      spriteID: d6bc8d48d01d90145a8a50a8f1e0157d
+      internalID: 1899919810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_1
+      name: But1Attack_1
       rect:
         serializedVersion: 2
         x: 259
@@ -134,20 +134,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5baba31bb3b4b6b4283610591ca22fbc
-      internalID: 764881985
+      spriteID: eeb0bd1f787a7c042a9156944a4e519c
+      internalID: 20511319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_2
+      name: But1Attack_2
       rect:
         serializedVersion: 2
         x: 518
@@ -155,20 +155,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd496f829dc9d7e4388957fba7cee847
-      internalID: -878994953
+      spriteID: d5de06ee8a4580a48932b81613237f93
+      internalID: -1818951888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_3
+      name: But1Attack_3
       rect:
         serializedVersion: 2
         x: 777
@@ -176,20 +176,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e3bd86eda88bcf408f2a7eafe4748da
-      internalID: 1972590697
+      spriteID: cd15e814f76485d4aabca224b69b8683
+      internalID: 511309458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_4
+      name: But1Attack_4
       rect:
         serializedVersion: 2
         x: 1036
@@ -197,20 +197,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f80d78312de164747a95f08875a23e8d
-      internalID: 1908646373
+      spriteID: 010ab500394191b4a90f577db202f228
+      internalID: 694900978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_5
+      name: But1Attack_5
       rect:
         serializedVersion: 2
         x: 1295
@@ -218,20 +218,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0203e821903a5334fa2c2d9a07e697d9
-      internalID: 1281618946
+      spriteID: d755d56fb91aae4499bb65c9d99bf432
+      internalID: -620788230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_6
+      name: But1Attack_6
       rect:
         serializedVersion: 2
         x: 0
@@ -239,20 +239,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 559547545a1137b429bfc0c7ffda4490
-      internalID: -2069630975
+      spriteID: 952ffcdc18337fa48a498ea2cd69c309
+      internalID: -1740589904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_7
+      name: But1Attack_7
       rect:
         serializedVersion: 2
         x: 259
@@ -260,20 +260,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cd5fc1e7b528cf4a8c05f4d56ecfb1a
-      internalID: -86107851
+      spriteID: ba6ea9fff2619994cacfffe67557f7b8
+      internalID: -1684942101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_8
+      name: But1Attack_8
       rect:
         serializedVersion: 2
         x: 518
@@ -281,20 +281,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 359d50fbc33f2ce4282411c6a3664d2a
-      internalID: -1998399213
+      spriteID: 581f97165a32606499bf6c8711a1c156
+      internalID: 384820280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_9
+      name: But1Attack_9
       rect:
         serializedVersion: 2
         x: 777
@@ -302,20 +302,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bad6438e755f90c499ee5bb9c8aafbf4
-      internalID: -1603203711
+      spriteID: 33de2e4e43d985e4b8f6620b3a6af807
+      internalID: -294644993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_10
+      name: But1Attack_10
       rect:
         serializedVersion: 2
         x: 1036
@@ -323,20 +323,20 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4cc5ca1ee817a041bd60819d7f7556c
-      internalID: -146985825
+      spriteID: 451b806f90e3b254e83b386caf7f8f09
+      internalID: 1878001345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bug1_11
+      name: But1Attack_11
       rect:
         serializedVersion: 2
         x: 1295
@@ -344,14 +344,14 @@ TextureImporter:
         width: 259.33334
         height: 261.5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0e62e2602bc03840b801539834dfa7e
-      internalID: 55657268
+      spriteID: 794b6269e0bfc4148ac445fad757abc4
+      internalID: -1111813944
       vertices: []
       indices: 
       edges: []
@@ -359,7 +359,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 971d0895a00600a41a86f0e31b6e7f7b
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -367,18 +367,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bug1_5: 1281618946
-      bug1_7: -86107851
-      bug1_3: 1972590697
-      bug1_8: -1998399213
-      bug1_2: -878994953
-      bug1_1: 764881985
-      bug1_11: 55657268
-      bug1_6: -2069630975
-      bug1_10: -146985825
-      bug1_0: -378604408
-      bug1_9: -1603203711
-      bug1_4: 1908646373
+      But1Attack_0: 1899919810
+      But1Attack_4: 694900978
+      But1Attack_9: -294644993
+      But1Attack_10: 1878001345
+      But1Attack_8: 384820280
+      But1Attack_6: -1740589904
+      But1Attack_2: -1818951888
+      But1Attack_3: 511309458
+      But1Attack_1: 20511319
+      But1Attack_11: -1111813944
+      But1Attack_5: -620788230
+      But1Attack_7: -1684942101
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
