@@ -18,7 +18,7 @@ MonoBehaviour:
   AttackDamage: 1
   MovementSpeed: 4
   AttackType: 0
-  DetectionUpdateTime: 3
+  DetectionUpdateTime: 1.5
   Attack:
     FrontAnimation: {fileID: 7400000, guid: f3624ffd5c7c15c489c887178dff5eec, type: 2}
     BackAnimation: {fileID: 7400000, guid: c79724a60652a04428ba2e9c13ffa198, type: 2}
